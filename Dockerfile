@@ -10,5 +10,7 @@ COPY . /app
 # Install the application dependencies
 RUN make setup
 
+EXPOSE 8000
+
 # Define the entry point for the container
 CMD ["make", "server"]
