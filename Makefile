@@ -1,8 +1,14 @@
-setup:
-	pip install -r requirements.txt
+setup: venv/requirements.txt
+
+venv:
+	python -m venv venv
+
+venv/requirements.txt: venv requirements.txt
+	venv/bin/pip install -r requirements.txt
+	cp requirements.txt venv/
 
 manage.py: setup
-	django-admin startproject demo .
+	venv/bin/django-admin startproject demo .
 
 server: manage.py
-	python manage.py runserver 0.0.0.0:8000
+	venv/bin/python manage.py runserver 0.0.0.0:8000
